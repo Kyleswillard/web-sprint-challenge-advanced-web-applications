@@ -5,7 +5,7 @@ import axiosWithAuth from '../helpers/axiosWithAuth'
 
 const Login = () => {
     const [user, setUser] = useState({
-        login: { username: '', password: '' },
+        login: { username: 'Lambda School', password: 'i<3Lambd4' },
         isLoading: false
     })
     // make a post request to retrieve a token from the api
