@@ -1,30 +1,25 @@
-import React from 'react';
-import {Route, Redirect} from 'react-router-dom'
-import BubblesPage from './BubblePage'
+import React from 'react'
+import { Route, Redirect } from 'react-router-dom'
 
-
-const PrivateRoute = () => {
-  return (
-    <Route {...rest} render={props =>
-    isAuthenticated ?
-    (<BubblesPage {...props} />
-
-    ):(
-      <Redirect to='/login'/>
-
-    )
-  } />
-   );
+const isAuth = () => {
+    return localStorage.getItem('token') !== null
 }
 
-export default PrivateRoute;
+const PrivateRoute = ({ component: Component, ...props }) => {
+    return (
+        <Route
+            {...props}
+            render={() => {
+                if (isAuth()) {
+                    return <Component />
+                }
+                return <Redirect to="/api/login" />
+            }}
+        />
+    )
+}
 
-
-
-
-
-
-
+export default PrivateRoute
 
 //Task List:
 //1. Build a PrivateRoute component that redirects if user is not logged in
